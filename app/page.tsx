@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 
 interface TimeElapsed {
   years: number;
@@ -159,13 +160,38 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white p-4">
+    <main>
+      <Head>
+        <title>Ever wonder how long it has been since Kaizer Chiefs last won a trophy?</title>
+        <meta
+          name="description"
+          content="Track how long it has been since Kaizer Chiefs won their last trophy. Stay updated on the drought status of South Africa's iconic football club."
+        />
+        <meta
+          name="keywords"
+          content="Kaizer Chiefs, trophy drought, South African football, PSL stats, Kaizer Chiefs history"
+        />
+        <meta property="og:title" content="Kaizer Chiefs Trophy Drought Tracker" />
+        <meta
+          property="og:description"
+          content="See how many days it has been since Kaizer Chiefs last won a trophy."
+        />
+        <meta property="og:image" content="/images/chiefs-drought.png" />
+        <meta property="og:url" content="https://chiefsdroughttracker.co.za" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Kaizer Chiefs Trophy Drought Tracker" />
+        <meta name="twitter:description" content="Track the drought history of Kaizer Chiefs." />
+        <meta name="twitter:image" content="URL-to-your-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="icon" href="/images/chiefs-drought.png" />
+      </Head>
+      <div className="min-h-screen flex items-center justify-center bg-white p-4">
       <div className="w-full max-w-2xl bg-white">
         <div>
           <h1 className="sm:text-4xl text-2xl font-black  tracking-tight">
           KAIZER CHIEFS TROPHY DROUGHT
           </h1>
-          <p className="text-xs mb-8 font-blacktracking-tight">The Kaizer Chiefs banter era in numbers</p>
+          <p className="text-xs mb-8 font-blacktracking-tight">Ever wondered how long it has been since Kaizer Chiefs last won a trophy?</p>
         </div>
         
         <div className="space-y-8">
@@ -199,10 +225,6 @@ export default function Home() {
               <span className="font-bold">{timeElapsed?.seconds}</span>
             </div>
           </div>
-          {/* <div className="flex justify-between font-mono border-t-2 border-black pt-4">
-            <span>LAST TROPHY:</span>
-            <span>{formatDate(lastTrophyDate)}</span>
-          </div> */}
 
           <div className="border-t-2 border-black pt-2 ">
             <div 
@@ -226,5 +248,7 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </main>
+    
   );
 }
