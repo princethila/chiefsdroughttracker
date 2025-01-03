@@ -10,9 +10,17 @@ interface TimeElapsed {
   seconds: number;
 }
 
+
+interface Event {
+  title: string;
+  date: string;
+  description: string;
+  type: string;
+}
+
 export default function Home() {
   const [timeElapsed, setTimeElapsed] = useState<TimeElapsed | null>(null);
-  const [currentContent, setCurrentContent] = useState(null);
+  const [currentContent, setCurrentContent] = useState<Event | null>(null);
   const [isVisible, setIsVisible] = useState(true);
   const lastTrophyDate = '2015-05-09';
 
@@ -120,9 +128,9 @@ export default function Home() {
     }
   ];
 
-  const allContent = [...worldEvents];
+  const allContent: Event[] = [...worldEvents];
 
-  const getRandomContent = (currentItem) => {
+  const getRandomContent = (currentItem: Event | null) => {
     let newContent;
     do {
       newContent = allContent[Math.floor(Math.random() * allContent.length)];
