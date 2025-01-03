@@ -219,7 +219,7 @@ export default function Home() {
                   <p className="text-xs sm:text-sm">{currentContent.description}</p>
                 </div>
               ) : (
-                <div className="text-xs sm:text-sm">{currentContent?.content}</div>
+                <div className="text-xs sm:text-sm">{currentContent?.title}</div>
               )}
             </div>
           </div>
