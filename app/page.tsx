@@ -1,8 +1,6 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import html2canvas from 'html2canvas';
 
 interface TimeElapsed {
   years: number;
