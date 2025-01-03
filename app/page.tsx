@@ -117,7 +117,7 @@ export default function Home() {
     {
       title: "Mamelodi Sundowns won 15 trophies",
       date: "2016-10-23",
-      description: "Mamelodi Sundowns became a serious club and won everything almost every season.",
+      description: "Mamelodi Sundowns have dominated the league and won everything almost every season.",
       type: "event"
     },
     {
