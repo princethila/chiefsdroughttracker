@@ -296,31 +296,31 @@ export default function Home() {
         
         <div className="space-y-8">
           <div className="space-y-4 border-t-2 border-black pt-4">
-            <div className="flex justify-between font-mono sm:text-base text-sm pb-4 border-black border-b-2">
+            <div className="flex justify-between font-mono sm:text-sm text-xs pb-4 border-black border-b-2">
               <span>LAST TROPHY DATE:</span>
               <span className="">{formatDate(lastTrophyDate)}</span>
             </div>
-            <div className="flex justify-between font-mono sm:text-xl text-base">
+            <div className="flex justify-between font-mono sm:text-base text-sm">
               <span>YEARS ELAPSED:</span>
               <span className="font-bold">{timeElapsed?.years}</span>
             </div>
             
-            <div className="flex justify-between font-mono sm:text-xl text-base">
+            <div className="flex justify-between font-mono sm:text-base text-sm">
               <span>DAYS ELAPSED:</span>
               <span className="font-bold">{timeElapsed?.days}</span>
             </div>
 
-            <div className="flex justify-between font-mono sm:text-xl text-base">
+            <div className="flex justify-between font-mono sm:text-base text-sm">
               <span>HOURS ELAPSED:</span>
               <span className="font-bold">{timeElapsed?.hours}</span>
             </div>
 
-            <div className="flex justify-between font-mono sm:text-xl text-base">
+            <div className="flex justify-between font-mono sm:text-base text-sm">
               <span>MINUTES ELAPSED:</span>
               <span className="font-bold">{timeElapsed?.minutes}</span>
             </div>
 
-            <div className="flex justify-between font-mono sm:text-xl text-base">
+            <div className="flex justify-between font-mono sm:text-base text-sm">
               <span>SECONDS ELAPSED:</span>
               <span className="font-bold">{timeElapsed?.seconds}</span>
             </div>
