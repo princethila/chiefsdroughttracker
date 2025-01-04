@@ -176,14 +176,14 @@ export default function Home() {
           property="og:description"
           content="See how many days it has been since Kaizer Chiefs last won a trophy."
         />
-        <meta property="og:image" content="/images/chiefs-drought.png" />
+        <meta property="og:image" content="https://www.chiefsdroughttracker.co.za/images/chiefs-drought.png" />
         <meta property="og:url" content="https://chiefsdroughttracker.co.za" />
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Kaizer Chiefs Trophy Drought Tracker" />
         <meta name="twitter:description" content="Track the drought history of Kaizer Chiefs." />
-        <meta name="twitter:image" content="URL-to-your-image.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <link rel="icon" href="/images/chiefs-drought.png" />
+        <meta name="twitter:image" content="https://www.chiefsdroughttracker.co.za/images/chiefs-drought.png" />
+        <meta name="twitter:card" content="https://www.chiefsdroughttracker.co.za/images/chiefs-drought.png" />
+        <link rel="icon" href="https://www.chiefsdroughttracker.co.za/images/chiefs-drought.png" />
       </Head>
       <div className="min-h-screen flex items-center justify-center bg-white p-4">
       <div className="w-full max-w-2xl bg-white">
