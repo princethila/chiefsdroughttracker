@@ -167,9 +167,22 @@ export default function Home() {
           name="description"
           content="Track how long it has been since Kaizer Chiefs won their last trophy. Stay updated on the drought status of South Africa's iconic football club."
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Kaizer Chiefs Trophy Drought Tracker",
+              "url": "https://chiefsdroughttracker.co.za",
+              "description": "Track how long it has been since Kaizer Chiefs won their last trophy. Stay updated on the drought status of South Africa's iconic football club.",
+              "image": "https://chiefsdroughttracker.co.za/images/chiefs-drought.png",
+            }),
+          }}
+        />
         <meta
           name="keywords"
-          content="Kaizer Chiefs, trophy drought, South African football, PSL stats, Kaizer Chiefs history"
+          content="Kaizer Chiefs, trophy drought, Mamelodi Sundowns trophies, Orlando Pirates trophies, South African football, PSL stats, Kaizer Chiefs history"
         />
         <meta property="og:title" content="Kaizer Chiefs Trophy Drought Tracker" />
         <meta
@@ -185,6 +198,7 @@ export default function Home() {
         <meta name="twitter:card" content="https://www.chiefsdroughttracker.co.za/images/chiefs-drought.png" />
         <link rel="icon" href="https://www.chiefsdroughttracker.co.za/images/chiefs-drought.png" />
       </Head>
+      
       <div className="min-h-screen flex items-center justify-center bg-white p-4">
       <div className="w-full max-w-2xl bg-white">
         <div>
