@@ -47,7 +47,7 @@ export default function Home() {
     },
     {
       name: "Sundowns",
-      lastTrophyDate: "2024-09-01", // Example date
+      lastTrophyDate: "2023-11-12", // Example date
       timeElapsed: null,
       color: "bg-yellow-400"
     }
