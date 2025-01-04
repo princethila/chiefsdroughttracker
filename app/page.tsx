@@ -2,9 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { ChevronDown } from "lucide-react"
 
 interface TimeElapsed {
+  remainingDays: number;
   years: number;
+  months: number;
   days: number;
   hours: number;
   minutes: number;
@@ -19,30 +23,106 @@ interface Event {
   type: string;
 }
 
+
+interface TeamData {
+  name: string;
+  lastTrophyDate: string;
+  timeElapsed: TimeElapsed | null;
+  color: string;
+}
+
 export default function Home() {
+  const teams: TeamData[] = [
+    {
+      name: "Chiefs",
+      lastTrophyDate: "2015-05-09",
+      timeElapsed: null,
+      color: "bg-yellow-500"
+    },
+    {
+      name: "Pirates",
+      lastTrophyDate: "2024-10-05", // Example date
+      timeElapsed: null,
+      color: "bg-black"
+    },
+    {
+      name: "Sundowns",
+      lastTrophyDate: "2024-09-01", // Example date
+      timeElapsed: null,
+      color: "bg-yellow-400"
+    }
+  ];
+
+  const [teamsData, setTeamsData] = useState<TeamData[]>(teams);
   const [timeElapsed, setTimeElapsed] = useState<TimeElapsed | null>(null);
   const [currentContent, setCurrentContent] = useState<Event | null>(null);
   const [isVisible, setIsVisible] = useState(true);
   const lastTrophyDate = '2015-05-09';
 
-  const calculateTimeElapsed = () => {
-    const inputDate = new Date(lastTrophyDate);
+  const calculateTimeElapsed = (dateString: string) => {
+    const inputDate = new Date(dateString);
     const now = new Date();
     const diffTime = Math.abs(now.getTime() - inputDate.getTime());
-
+  
     const totalSeconds = Math.floor(diffTime / 1000);
     const totalMinutes = Math.floor(totalSeconds / 60);
     const totalHours = Math.floor(totalMinutes / 60);
     const totalDays = Math.floor(totalHours / 24);
-    const totalYears = Math.floor(totalDays / 365);
-
-    setTimeElapsed({ 
-      years: totalYears,
+  
+    // Calculate years, months, and remaining days
+    const years = Math.floor(totalDays / 365);
+    const remainingDaysAfterYears = totalDays % 365;
+    const months = Math.floor(remainingDaysAfterYears / 30.44); // Average days in a month
+    const remainingDays = Math.floor(remainingDaysAfterYears % 30.44);
+  
+    return {
+      remainingDays,
+      years,
+      months,
       days: totalDays,
       hours: totalHours,
       minutes: totalMinutes,
       seconds: totalSeconds
-    });
+    };
+  };
+  
+  // Add a new useEffect to calculate times for all teams:
+  useEffect(() => {
+    const updateAllTimes = () => {
+      // Update individual Chiefs counter
+      const chiefsTime = calculateTimeElapsed(lastTrophyDate);
+      setTimeElapsed(chiefsTime);
+  
+      // Update all teams
+      setTeamsData(prevTeams => 
+        prevTeams.map(team => ({
+          ...team,
+          timeElapsed: calculateTimeElapsed(team.lastTrophyDate)
+        }))
+      );
+    };
+  
+    updateAllTimes();
+    const interval = setInterval(updateAllTimes, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTimeElapsed = (timeElapsed: TimeElapsed | null): string => {
+    if (!timeElapsed) return "";
+    
+    const parts = [];
+    
+    if (timeElapsed.years > 0) {
+      parts.push(`${timeElapsed.years} ${timeElapsed.years === 1 ? 'y' : 'ys'}`);
+    }
+    if (timeElapsed.months > 0) {
+      parts.push(`${timeElapsed.months} ${timeElapsed.months === 1 ? 'm' : 'ms'}`);
+    }
+    if (timeElapsed.remainingDays > 0) {
+      parts.push(`${timeElapsed.remainingDays} ${timeElapsed.remainingDays === 1 ? 'd' : 'ds'}`);
+    }
+    
+    return parts.join(' ');
   };
 
   useEffect(() => {
@@ -259,6 +339,39 @@ export default function Home() {
               )}
             </div>
           </div>
+          <div className="p-4 border-2 border-black mt-4">
+  {/* <h3 className="font-bold mb-4">The big 3</h3> */}
+  <Collapsible>
+  <CollapsibleTrigger className="flex w-full items-center mb-2 justify-between rounded-none font-bold hover:bg-gray-50">
+    <span className='font-bold text-xs sm:text-sm'>Compare the big 3</span>
+    <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+  </CollapsibleTrigger>
+  <CollapsibleContent>
+    <div className="space-y-2">
+      {teamsData.map((team) => (
+        <div key={team.name} className="relative">
+          <div className="flex items-center space-x-2 mb-1">
+            <span className="text-xs font-semibold py-1 uppercase rounded-full text-black text-center">
+              {team.name}
+            </span>
+            <div className="flex-grow">
+              <div className="overflow-hidden h-2 flex rounded bg-gray-200">
+                <div
+                  style={{ width: `${(team.timeElapsed?.days || 0) / 50}%` }}
+                  className={`shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center ${team.color}`}
+                ></div>
+              </div>
+            </div>
+            <span className="text-xs font-semibold text-black min-w-[90px] text-right">
+              {formatTimeElapsed(team.timeElapsed)}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+    </CollapsibleContent>
+</Collapsible>
+  </div>
         </div>
       </div>
     </div>
