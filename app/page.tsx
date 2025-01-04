@@ -126,10 +126,16 @@ export default function Home() {
   };
 
   useEffect(() => {
-    calculateTimeElapsed();
-    const interval = setInterval(calculateTimeElapsed, 1000);
+    // Call the function with the required argument
+    setTimeElapsed(calculateTimeElapsed(lastTrophyDate));
+  
+    // Use an anonymous function to pass the argument in setInterval
+    const interval = setInterval(() => {
+      setTimeElapsed(calculateTimeElapsed(lastTrophyDate));
+    }, 1000);
+  
     return () => clearInterval(interval);
-  }, []);
+  }, [lastTrophyDate]);
 
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -339,7 +345,7 @@ export default function Home() {
               )}
             </div>
           </div>
-          <div className="p-4 border-2 border-black mt-4">
+          <div className="p-4 border-2 border-black mt-2">
   {/* <h3 className="font-bold mb-4">The big 3</h3> */}
   <Collapsible>
   <CollapsibleTrigger className="flex w-full items-center mb-2 justify-between rounded-none font-bold hover:bg-gray-50">
