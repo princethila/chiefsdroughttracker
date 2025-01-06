@@ -57,7 +57,7 @@ export default function Home() {
   const [timeElapsed, setTimeElapsed] = useState<TimeElapsed | null>(null);
   const [currentContent, setCurrentContent] = useState<Event | null>(null);
   const [isVisible, setIsVisible] = useState(true);
-  const lastTrophyDate = '2015-05-09';
+  const lastTrophyDate = '2014-09-20';
 
   const calculateTimeElapsed = (dateString: string) => {
     const inputDate = new Date(dateString);
