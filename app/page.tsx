@@ -35,7 +35,7 @@ export default function Home() {
   const teams: TeamData[] = [
     {
       name: "Chiefs",
-      lastTrophyDate: "2015-05-09",
+      lastTrophyDate: "2014-09-20",
       timeElapsed: null,
       color: "bg-yellow-500"
     },
